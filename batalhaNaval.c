@@ -27,6 +27,8 @@ int main() {
     // ========================
     int navioVertical[tamanhoNavio] = {navio, navio, navio};
     int navioHorizontal[tamanhoNavio] = {navio, navio, navio};
+    int navioDiagonalDireita [tamanhoNavio] = {navio, navio, navio};
+    int navioDiagonalEsquerda [tamanhoNavio] = {navio, navio, navio};
 
     // ============================
     // POSIÇÕES INICIAIS DOS NAVIOS
@@ -36,6 +38,12 @@ int main() {
 
     int linhaVerticalInicio = 5;
     int colunaVerticalInicio = 6;
+
+    int linhaDiagonalDireitaInicio = 1;
+    int colunaDiagonalDireitaInicio = 8;
+
+    int linhaDiagonalEsquerdaInicio = 5;
+    int colunaDiagonalEsquerdaInicio = 1;
 
     // ============================================================
     // VALIDAÇÃO BÁSICA SE OS NAVIOS ESTÃO NOS LIMITES DO TABULEIRO
@@ -79,6 +87,32 @@ int main() {
         tabuleiro[linha][coluna] = navioVertical[i];
     }
 
+    // Colocando o navio diagonal direita
+    for (int i = 0; i < tamanhoNavio; i++) {
+        int linha = linhaDiagonalDireitaInicio + i;
+        int coluna = colunaDiagonalDireitaInicio - i;
+
+        if (tabuleiro[linha][coluna] == navio) {
+            printf("Erro: Sobreposição de navios na posição (%d, %d).\n", linha, coluna);
+            return 1;
+        }
+
+        tabuleiro[linha][coluna] = navioDiagonalDireita[i];
+    }
+
+    // Colocando o navio diagonal esquerda
+    for (int i = 0; i < tamanhoNavio; i++) {
+        int linha = linhaDiagonalEsquerdaInicio + i;
+        int coluna = colunaDiagonalEsquerdaInicio + i;
+
+        if (tabuleiro[linha][coluna] == navio) {
+            printf("Erro: Sobreposição de navios na posição (%d, %d).\n", linha, coluna);
+            return 1;
+        }
+
+        tabuleiro[linha][coluna] = navioDiagonalEsquerda[i];
+    }
+
     // =====================
     // EXIBIÇÃO DO TABULEIRO
     // =====================
@@ -95,3 +129,4 @@ int main() {
 
     return 0;
 }
+
